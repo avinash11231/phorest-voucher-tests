@@ -84,7 +84,7 @@ This suite covers the core objectives and completes all bonus goals outlined in 
 
 ## Test Suite Coverage 
 
-Total 18 tests, with 16 passing, 2 fixmes.
+Total 20 tests, with 18 passing, 2 fixmes.
 
 ### `happy-path.spec.ts` (4 tests)
 *   `Purchase a €50 voucher for yourself` - Selects preset value, enters purchaser details, fills valid card numbers, and confirms the final success state.
@@ -102,8 +102,10 @@ Total 18 tests, with 16 passing, 2 fixmes.
 *   `Payment without a CVC is rejected` - Confirms entering card details lacking CVC fails payment and displays Stripe's validation errors.
 *   `Edit from the payment page applies the new amount` - Verifies edit flows are correct from the final payment step.
 
-### `validation.spec.ts` (5 tests)
+### `validation.spec.ts` (7 tests)
+*   `accepts the minimum custom amount` - Confirms that exactly €20 is accepted and no validation error is shown.
 *   `rejects an amount below the minimum` - Triggers validation error for custom inputs under €20.
+*   `accepts the maximum custom amount` - Confirms that exactly €1000 is accepted and no validation error is shown.
 *   `rejects an amount above the maximum` - Triggers validation error for custom inputs over €1000.
 *   `shows the custom textbox only when Other is selected` - Checks that the custom input displays conditionally.
 *   `rejects an invalid buyer email`
