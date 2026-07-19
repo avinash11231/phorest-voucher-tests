@@ -14,12 +14,6 @@ test.describe('Success Page', () => {
     expect(await successPage.getVoucherNumber()).not.toBe('');
   });
 
-  /**
-   * The demo environment does not deliver voucher or receipt emails
-   * (suspected mock mail transport). Documented in the README bug log.
-   * These are intentionally left as fixme so the gap is visible in the
-   * report rather than silently absent.
-   */
   test.fixme('voucher email is delivered to the recipient', async () => { });
   test.fixme('receipt email is delivered to the purchaser', async () => { });
 });

@@ -20,20 +20,48 @@ You can trigger and review the test execution directly on GitHub without downloa
    *(A zipped copy of the report is also downloadable under the **Artifacts** section at the bottom of the workflow run details).*
 
 ### Option 2: Run Locally
-Ensure you have Node.js installed, then run the following:
+
+#### Prerequisites
+- [Node.js](https://nodejs.org/) v18 or higher
+- [Git](https://git-scm.com/)
+
+#### 1. Clone the repository
 
 ```bash
-# Install package dependencies and Playwright browsers
+git clone https://github.com/avinash11231/phorest-voucher-tests.git
+cd phorest-voucher-tests
+```
+
+#### 2. Install dependencies and Playwright browsers
+
+```bash
 npm ci
 npx playwright install --with-deps
+```
 
-# Execute the E2E test suites
+#### 3. Run the tests
+
+```bash
+# Run the full test suite (all specs, headless)
 npm test
 
-# Run tests with the browser UI visible (headed mode)
+# Run with the browser visible (headed mode)
 npm run test:headed
 
-# Open the local interactive HTML test report
+# Run a single spec file
+npx playwright test tests/happy-path.spec.ts
+npx playwright test tests/validation.spec.ts
+npx playwright test tests/summary.spec.ts
+npx playwright test tests/payment.spec.ts
+npx playwright test tests/success.spec.ts
+
+# Run a single test by name (partial match)
+npx playwright test -g "Purchase a €50 voucher for yourself"
+
+# Run tests in a specific browser (chromium, firefox, webkit)
+npx playwright test --project=chromium
+
+# Open the interactive HTML report after a run
 npm run report
 ```
 
