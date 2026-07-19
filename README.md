@@ -39,19 +39,6 @@ npm run report
 
 ---
 
-## Candidate Task Coverage
-
-This suite covers the core objectives and completes all bonus goals outlined in the brief:
-
-*   **Core Task**: Comprehensive automated test coverage for the multi-step voucher checkout flow.
-*   **Clean Code**: Built using the Page Object Model (POM), clean file separation, and strict TypeScript types.
-*   **Discovering Bugs**: Investigated and documented backend load limits and email notification defects.
-*   **Testing Email Delivery**: Written tests for email verification, marked as `fixme` to track the product defect without failing the CI pipeline.
-*   **CI/CD Integration**: Integrated GitHub Actions workflow to run tests automatically and publish reports to GitHub Pages.
-*   **Clear Readme**: Documentation of execution options, system architecture, and staging defects.
-
----
-
 ## Project Structure
 
 ```
@@ -79,6 +66,14 @@ This suite covers the core objectives and completes all bonus goals outlined in 
 └── utils/
     └── testData.ts         # Test data (buyer, card details, amounts)
 ```
+
+---
+
+## Architecture & Code Design
+
+- **Page Object Model (POM)**: Located in `pages/`, representing the flow pages (`VoucherPage`, `SummaryPage`, `PaymentPage`, `SuccessPage`). Inherits shared navigations and states from `BasePage`.
+- **Dependency Injection**: Using customized Playwright fixtures in `fixtures/pages.ts` to automatically instantiate and clean up page objects for each test.
+- **Centralised Data**: Test accounts, presets, and card configurations are maintained in `utils/testData.ts`.
 
 ---
 
@@ -118,19 +113,11 @@ Total 20 tests, with 18 passing, 2 fixmes.
 
 ---
 
-## Architecture & Code Design
-
-- **Page Object Model (POM)**: Located in `pages/`, representing the flow pages (`VoucherPage`, `SummaryPage`, `PaymentPage`, `SuccessPage`). Inherits shared navigations and states from `BasePage`.
-- **Dependency Injection**: Using customized Playwright fixtures in `fixtures/pages.ts` to automatically instantiate and clean up page objects for each test.
-- **Centralised Data**: Test accounts, presets, and card configurations are maintained in `utils/testData.ts`.
-
----
-
 ## Environment Bugs & Mitigations
 
 ### 1. Intermittent HTTP 502 / 500 Server Errors under Load
 - **Problem**: Backends intermittently return server errors during sequential runs.
-- **Mitigation**: Configured Playwright to run sequentially (`workers: 1`) and created a custom fixture in `fixtures/pages.ts` that adds a 3-second delay (`settleDelay`) between tests to let the environment recover. I also set `retries: 2` in `playwright.config.ts`.
+- **Mitigation**: Configured Playwright to run sequentially (`workers: 1`) and created a custom fixture in `fixtures/pages.ts` that adds a 3-second delay (`settleDelay`) between tests to let the environment recover. Retries are set to 2 in `playwright.config.ts`.
 - **Diagnostics**: The custom `page` fixture listens to all responses; if a `>= 500` status code is returned, it prints the status and URL in the console (`Demo environment returned server errors`) to help separate environment errors from locator issues.
 
 ### 2. Missing Receipt and Voucher Email Delivery
