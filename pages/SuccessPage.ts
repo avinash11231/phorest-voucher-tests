@@ -15,7 +15,7 @@ export class SuccessPage extends BasePage {
 
     this.successMessage = page.getByText('Payment accepted, thank you!', { exact: true });
     this.voucherValue = page.locator('p.mb-8.text-3xl.font-bold').first();
-    this.voucherNumber = page.locator('[data-controller="stripe-serial"]');
+    this.voucherNumber = page.locator(`//p[@data-controller='stripe-serial']`);
     this.doneButton = page.getByRole('button', { name: 'Done' });
   }
 

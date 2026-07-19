@@ -1,7 +1,7 @@
 export const buyer = {
   firstName: 'Avinash',
   lastName: 'Mathew',
-  email: 'avinash.mathew@phorest.com',
+  email: 'avinash.mathew@testphorest.com',
 };
 
 export const friend = {
@@ -19,6 +19,7 @@ export const amounts = {
   fixed: '50',
   custom: '75',
   min: '20',
+  max: '1000',
   belowMin: '19',
   aboveMax: '1001',
 };

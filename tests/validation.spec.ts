@@ -7,9 +7,19 @@ test.describe('Voucher page validation', () => {
   });
 
   test.describe('Custom amount', () => {
+    test('accepts the minimum custom amount', async ({ voucherPage }) => {
+      await voucherPage.selectAmount(amounts.min);
+      await expect(voucherPage.amountError).toBeHidden();
+    });
+
     test('rejects an amount below the minimum', async ({ voucherPage }) => {
       await voucherPage.selectAmount(amounts.belowMin);
       await expect(voucherPage.amountError).toBeVisible();
+    });
+
+    test('accepts the maximum custom amount', async ({ voucherPage }) => {
+      await voucherPage.selectAmount(amounts.max);
+      await expect(voucherPage.amountError).toBeHidden();
     });
 
     test('rejects an amount above the maximum', async ({ voucherPage }) => {

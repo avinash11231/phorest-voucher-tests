@@ -36,10 +36,10 @@ export class VoucherPage extends BasePage {
 
     this.pageHeading = page.getByText('Buy a Gift Voucher', { exact: true });
 
-    this.amount50 = page.getByRole('radio', { name: '€50', checked: false });
-    this.amount100 = page.getByRole('radio', { name: '€100', checked: false });
-    this.amount150 = page.getByRole('radio', { name: '€150', checked: false });
-    this.customOption = page.getByRole('radio', { name: 'Other', checked: false });
+    this.amount50 = page.getByLabel('€50');
+    this.amount100 = page.getByLabel('€100');
+    this.amount150 = page.getByLabel('€150');
+    this.customOption = page.getByLabel('Other');
     this.customAmountInput = page.locator('input[data-target="amount.otherInput"]');
 
     this.forMyselfTab = page.getByRole('link', { name: 'Send to me' });
