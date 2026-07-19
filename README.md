@@ -130,7 +130,7 @@ Total 20 tests, with 18 passing, 2 fixmes.
 
 ### 1. Intermittent HTTP 502 / 500 Server Errors under Load
 - **Problem**: Backends intermittently return server errors during sequential runs.
-- **Mitigation**: Configured Playwright to run sequentially (`workers: 1`) and created a custom fixture in `fixtures/pages.ts` that adds a 3-second delay (`settleDelay`) between tests to let the environment recover. We also set `retries: 2` in `playwright.config.ts`.
+- **Mitigation**: Configured Playwright to run sequentially (`workers: 1`) and created a custom fixture in `fixtures/pages.ts` that adds a 3-second delay (`settleDelay`) between tests to let the environment recover. I also set `retries: 2` in `playwright.config.ts`.
 - **Diagnostics**: The custom `page` fixture listens to all responses; if a `>= 500` status code is returned, it prints the status and URL in the console (`Demo environment returned server errors`) to help separate environment errors from locator issues.
 
 ### 2. Missing Receipt and Voucher Email Delivery
