@@ -130,3 +130,4 @@ npm run report
 ### 2. Missing Receipt and Voucher Email Delivery
 - **Problem**: Mail transport does not deliver receipt or voucher emails.
 - **Mitigation**: The email tests are written in `success.spec.ts` but marked with `test.fixme`. This lists the coverage gap in reports without causing build failures.
+# phorest-voucher-tests
