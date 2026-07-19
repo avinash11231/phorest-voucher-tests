@@ -1,8 +1,41 @@
 # Phorest QA Engineer Candidate Task — Gift Voucher UI Automation
 
+[![Playwright Tests](https://github.com/avinash11231/phorest-voucher-tests/actions/workflows/playwright.yml/badge.svg)](https://github.com/avinash11231/phorest-voucher-tests/actions/workflows/playwright.yml)
+
 An end-to-end Playwright automation suite built in TypeScript for validating the Phorest gift voucher purchase flow.
 
-**URL:** `https://gift-cards-dev.phorest.com/salons/automationvouchersdemo`
+**Application URL:** `https://gift-cards-dev.phorest.com/salons/automationvouchersdemo`
+
+---
+
+## How to Run
+
+### Option 1: Run Online (GitHub Actions UI)
+You can trigger and review the test execution directly on GitHub without downloading or configuring anything:
+1. Navigate to the **Actions** tab of this repository.
+2. Select **Playwright Tests** from the workflow list on the left.
+3. Click the **Run workflow** dropdown on the right side and click the green **Run workflow** button.
+4. Once execution completes, the interactive HTML report will be updated and hosted online at:
+   `https://avinash11231.github.io/phorest-voucher-tests/`
+   *(A zipped copy of the report is also downloadable under the **Artifacts** section at the bottom of the workflow run details).*
+
+### Option 2: Run Locally
+Ensure you have Node.js installed, then run the following:
+
+```bash
+# Install package dependencies and Playwright browsers
+npm ci
+npx playwright install --with-deps
+
+# Execute the E2E test suites
+npm test
+
+# Run tests with the browser UI visible (headed mode)
+npm run test:headed
+
+# Open the local interactive HTML test report
+npm run report
+```
 
 ---
 
@@ -91,35 +124,6 @@ Total 18 tests, with 16 passing, 2 fixmes.
 
 ---
 
-## How to Run
-
-### Run Online (GitHub Actions)
-1. Push this project to your GitHub repository.
-2. Go to the **Actions** tab on your GitHub repository page.
-3. Select **Playwright Tests** and click **Run workflow**.
-4. Once completed, the interactive HTML report will deploy automatically to **GitHub Pages** (and remains downloadable under **Artifacts**).
-   *(Note: Ensure your repo Settings -> Actions -> Workflow permissions are set to "Read and write permissions" to allow Pages deployments).*
-
-### Run Locally
-Make sure you have Node.js installed, then run:
-
-```bash
-# Install dependencies and Playwright browsers
-npm ci
-npx playwright install --with-deps
-
-# Run all test suites
-npm test
-
-# Run tests with the browser window visible
-npm run test:headed
-
-# Open the interactive HTML report
-npm run report
-```
-
----
-
 ## Environment Bugs & Mitigations
 
 ### 1. Intermittent HTTP 502 / 500 Server Errors under Load
@@ -130,4 +134,3 @@ npm run report
 ### 2. Missing Receipt and Voucher Email Delivery
 - **Problem**: Mail transport does not deliver receipt or voucher emails.
 - **Mitigation**: The email tests are written in `success.spec.ts` but marked with `test.fixme`. This lists the coverage gap in reports without causing build failures.
-# phorest-voucher-tests
