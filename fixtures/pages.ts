@@ -12,6 +12,7 @@ type VoucherFixtures = {
   settleDelay: void;
 };
 
+// This was added to help identify server errors. 
 export const test = base.extend<VoucherFixtures>({
   page: async ({ page }, use) => {
     const serverErrors: string[] = [];
@@ -34,6 +35,7 @@ export const test = base.extend<VoucherFixtures>({
   paymentPage: async ({ page }, use) => use(new PaymentPage(page)),
   successPage: async ({ page }, use) => use(new SuccessPage(page)),
 
+  // The environment returns intermittent HTTP 500s under sequential load, so we pause briefly between tests.
   settleDelay: [
     async ({ }, use) => {
       await use();
