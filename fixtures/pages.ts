@@ -13,9 +13,6 @@ type VoucherFixtures = {
 };
 
 export const test = base.extend<VoucherFixtures>({
-  // Logs any 5xx responses from the demo environment. These surface otherwise
-  // as generic locator timeouts, which makes them hard to distinguish from
-  // genuine test failures. See README bug log.
   page: async ({ page }, use) => {
     const serverErrors: string[] = [];
 
@@ -37,8 +34,6 @@ export const test = base.extend<VoucherFixtures>({
   paymentPage: async ({ page }, use) => use(new PaymentPage(page)),
   successPage: async ({ page }, use) => use(new SuccessPage(page)),
 
-  // The demo environment returns intermittent HTTP 500s under sequential
-  // load, so we pause briefly between tests. See README bug log.
   settleDelay: [
     async ({ }, use) => {
       await use();
