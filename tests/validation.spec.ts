@@ -1,12 +1,12 @@
 import { test, expect } from '../fixtures/pages';
 import { buyer, friend, amounts } from '../utils/testData';
 
-test.describe('Voucher page validation', () => {
+test.describe('Voucher Page Validation', () => {
   test.beforeEach(async ({ voucherPage }) => {
     await voucherPage.goto();
   });
 
-  test.describe('Custom amount', () => {
+  test.describe('Custom Amount', () => {
     test('accepts the minimum custom amount', async ({ voucherPage }) => {
       await voucherPage.selectAmount(amounts.min);
       await expect(voucherPage.amountError).toBeHidden();
@@ -36,7 +36,7 @@ test.describe('Voucher page validation', () => {
     });
   });
 
-  test.describe('Email fields', () => {
+  test.describe('Email Validation', () => {
     test('rejects an invalid buyer email', async ({ voucherPage }) => {
       await voucherPage.selectAmount(amounts.fixed);
       await voucherPage.chooseForMyself();
